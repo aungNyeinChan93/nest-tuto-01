@@ -23,4 +23,20 @@ export class TasksService {
         const [task] = this.getAllTasks().filter(task => task.id === taskId);
         return task;
     }
+
+    createTask(task: object) {
+        const tasks = [...this.getAllTasks(), { ...task, id: (Number(this.getAllTasks().length) + 1).toString() }]
+        return tasks;
+    }
+
+    updateTask(taskId: string,) {
+        const tasks = this.getAllTasks().map(task => task?.id == taskId ? { ...task, isCompleted: !task?.isCompleted } : task)
+        return tasks
+    }
+
+    dropTask(taskId: string) {
+        const tasks = this.getAllTasks().filter(task => task?.id !== taskId);
+        return tasks
+    }
+
 }

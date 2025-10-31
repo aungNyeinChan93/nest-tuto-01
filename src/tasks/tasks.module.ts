@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TasksController } from './tasks.controller';
 import { TasksService } from './tasks.service';
@@ -6,4 +7,4 @@ import { TasksService } from './tasks.service';
   controllers: [TasksController],
   providers: [TasksService]
 })
-export class TasksModule {}
+export class TasksModule { }
