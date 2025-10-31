@@ -4,12 +4,19 @@ import { TodosService } from './todos.service';
 
 @Controller('todos')
 export class TodosController {
+
     constructor(private readonly todosService: TodosService) { }
 
     @Get()
     findAll(@Query() searchParams?: object) {
         return this.todosService.getAllTodos({ ...searchParams });
     }
+
+    @Get('tests/query')
+    test(@Query('name') name?: string) {
+        return { name }
+    }
+
 
     @Get(':id')
     findOne(@Param('id') id: string) {
@@ -30,5 +37,6 @@ export class TodosController {
     drop(@Param('id') id: string) {
         return this.todosService.deleteTodo(id)
     }
+
 
 }
