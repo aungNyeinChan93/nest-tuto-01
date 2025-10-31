@@ -1,6 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 
+// interface Todo {
+//     id?: number;
+//     task: string;
+//     status: string
+// }
+
 @Injectable()
 export class TodosService {
     private todos = [
@@ -33,11 +39,13 @@ export class TodosService {
     }
 
     editTodo({ todoId, status }: { todoId: string, status: string }) {
-        return this.todos.map(todo => todo?.id == Number(todoId) ? { ...todo, status } : todo)
+        this.todos = this.todos.map(todo => todo?.id == Number(todoId) ? { ...todo, status } : todo)
+        return this.getTodoById(todoId)
     }
 
     deleteTodo(todoId: string) {
-        return this.todos.filter(todo => todo?.id !== Number(todoId))
+        this.todos = this.todos.filter(todo => todo?.id !== Number(todoId))
+        return this.todos;
     }
 
 }
