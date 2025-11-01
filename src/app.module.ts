@@ -5,10 +5,11 @@ import { UsersModule } from './users/users.module';
 import { TasksModule } from './tasks/tasks.module';
 import { TodosModule } from './todos/todos.module';
 import { BooksModule } from './books/books.module';
+import { PlayersModule } from './players/players.module';
 
 
 @Module({
-  imports: [UsersModule, TasksModule, TodosModule, BooksModule],
+  imports: [UsersModule, TasksModule, TodosModule, BooksModule, PlayersModule],
   controllers: [AppController],
   providers: [AppService],
 })
