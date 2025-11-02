@@ -2,7 +2,7 @@
 
 import { type Customer } from './customers';
 import { CustomersService } from './customers.service';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 
 @Controller('customers')
 export class CustomersController {
@@ -14,8 +14,8 @@ export class CustomersController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.customersServices.findOne(+id);
+    findOne(@Param('id', ParseIntPipe) id: number) {
+        return this.customersServices.findOne(id);
     }
 
     @Post()
@@ -24,9 +24,9 @@ export class CustomersController {
     }
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() customer: Partial<Customer>) {
+    update(@Param('id', ParseIntPipe) id: number, @Body() customer: Partial<Customer>) {
         // return { id, ...customer }
-        return this.customersServices.update(+id, customer)
+        return this.customersServices.update(id, customer)
     }
 
     @Delete(':id')

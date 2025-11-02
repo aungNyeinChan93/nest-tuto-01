@@ -8,10 +8,11 @@ import { BooksModule } from './books/books.module';
 import { PlayersModule } from './players/players.module';
 import { TeamsModule } from './teams/teams.module';
 import { CustomersModule } from './customers/customers.module';
+import { QuotesModule } from './quotes/quotes.module';
 
 
 @Module({
-  imports: [UsersModule, TasksModule, TodosModule, BooksModule, PlayersModule, TeamsModule, CustomersModule],
+  imports: [UsersModule, TasksModule, TodosModule, BooksModule, PlayersModule, TeamsModule, CustomersModule, QuotesModule],
   controllers: [AppController],
   providers: [AppService],
 })
