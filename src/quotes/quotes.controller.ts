@@ -4,6 +4,7 @@ import { CreateQuotesDto } from './dto/create-quotes.dto';
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { QuotesService } from './quotes.service';
 import { UpdateQuotesDto } from './dto/update-quotes.dto';
+import { NotFoundError } from 'rxjs';
 
 @Controller('quotes')
 export class QuotesController {
@@ -17,6 +18,16 @@ export class QuotesController {
   @Get()
   findAll() {
     return this.quotesService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    try {
+      return this.quotesService.findOne(id);
+    } catch (error) {
+      return error instanceof Error ? error : "server err"
+
+    }
   }
 
   @Put(':id')

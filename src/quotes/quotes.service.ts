@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateQuotesDto } from './dto/create-quotes.dto';
 import { UpdateQuotesDto } from './dto/update-quotes.dto';
 
@@ -10,6 +10,15 @@ export class QuotesService {
     findAll() {
         return this.quotes;
     }
+
+    findOne(id: number) {
+        const quote = this.quotes?.find(q => q?.id === id)
+        if (!quote) {
+            throw new NotFoundException('Quote not found');
+        };
+        return quote
+    }
+
 
     create(quote: CreateQuotesDto): CreateQuotesDto[] {
         const newQuote = { ...quote, id: this.quotes.length + 1 }
